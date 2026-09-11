@@ -4,15 +4,15 @@
 
 ## 来源 / Attribution
 
-This skill is copied from the **Grok Build / grok CLI bundled skills**, published by **SpaceXAI (xAI)**.
+This skill is copied from the **Grok Build / grok CLI bundled platform skills**, published by **SpaceXAI (xAI)**.
 
 - Upstream project: [xai-org/grok-build](https://github.com/xai-org/grok-build) — "SpaceXAI's coding agent harness and TUI"
 - Upstream commit at time of copy: `37949780c144e37df692e3d669051a21fec24f20` (2026-09-09)
-- Original file: `~/.grok/bundled/skills/resume-cursor/SKILL.md`, a **bundled** skill shipped with **grok CLI v1.0.25** (macOS aarch64)
+- Original file: `~/.grok/bundled/skills/resume-cursor/SKILL.md`, a **bundled** platform skill delivered by grok CLI's bundle sync (bundle version `public-2026-09-09-r2`, fetched from the `cli-chat-proxy` endpoint `/v1/subagents/bundle`)
 - Copied on: 2026-09-11
 - License: [Apache-2.0](../shared/resume-session/LICENSE), Copyright 2023-2026 SpaceXAI
 
-> The bundled skill bodies are **not** present in the open-source repository tree — the repo ships only the skill-discovery/bundling machinery and the user guide. These files were extracted from the released CLI distribution (`grok inspect --json` reports them with `"source": {"type": "bundled"}`).
+> These skill bodies are **not** part of the open-source repository tree, and they are **not** compiled into the CLI binary either. The repository open-sources only the bundle client (archive extraction + cache) and the skill-discovery machinery; the content itself ships as a versioned, auth-gated server-side bundle that the CLI syncs into `~/.grok/bundled/`. `grok inspect --json` reports them with `"source": {"type": "bundled"}`.
 
 The original skill text is preserved unchanged.
 
