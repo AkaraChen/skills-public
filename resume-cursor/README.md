@@ -4,12 +4,9 @@
 
 ## 目录
 
-- `SKILL.md` —— 薄壳：设置 `TOOL=TOOLresume-cursor`，指向本目录的 `references/resume-session/f15d9c0163b103095a293f8d025fb8a490634ac95dafc85aed56d4b502cf7944.md`
-- `references/resume-session/f15d9c0163b103095a293f8d025fb8a490634ac95dafc85aed56d4b502cf7944.md` —— 真正的技能指令（读会话 → 产出交接摘要 → 先核对再继续）
-- `references/resume-session/session_reader.py` —— 只依赖 Python 标准库的会话读取器，支持 `claude` / `codex` / `cursor`
+- `SKILL.md` —— 薄壳：设置 `TOOL=cursor`
+- 运行时不在这里：`CORE.md` 与 `session_reader.py` 由同级技能 `resume-codex` 提供，路径为 `../resume-codex/references/resume-session/`
 - `LICENSE` —— 上游 Apache-2.0
-
-目录自包含，整个文件夹拷进任意 agent 的 skills 目录即可使用。
 
 ## 来源 / Attribution
 
@@ -17,8 +14,7 @@ This skill is copied from the **Grok Build / grok CLI bundled platform skills**,
 
 - Upstream project: [xai-org/grok-build](https://github.com/xai-org/grok-build) — "SpaceXAI's coding agent harness and TUI"
 - Upstream commit at time of copy: `37949780c144e37df692e3d669051a21fec24f20` (2026-09-09)
-- Original files: `~/.grok/bundled/skills/resume-cursor/SKILL.md` and `~/.grok/bundled/skills/shared/resume-session/{f15d9c0163b103095a293f8d025fb8a490634ac95dafc85aed56d4b502cf7944.md,session_reader.py}`
-- Delivered as **bundled** platform skills by grok CLI's bundle sync — bundle version `public-2026-09-09-r2`, fetched from the `cli-chat-proxy` endpoint `/v1/subagents/bundle`
+- Original file: `~/.grok/bundled/skills/resume-cursor/SKILL.md`, a **bundled** platform skill delivered by grok CLI's bundle sync (bundle version `public-2026-09-09-r2`, fetched from the `cli-chat-proxy` endpoint `/v1/subagents/bundle`)
 - Copied on: 2026-09-11
 - License: [Apache-2.0](LICENSE), Copyright 2023-2026 SpaceXAI
 
@@ -26,17 +22,16 @@ This skill is copied from the **Grok Build / grok CLI bundled platform skills**,
 
 ## 与上游的差异 / Adaptation
 
-上游 `SKILL.md` 只改了一行路径：
+上游 `SKILL.md` 只改了一行路径（其余正文一字未改）：
 
 ```diff
 -`SHARED_DIR="${SKILL_DIR}/../shared/resume-session"`
-+`SHARED_DIR="${SKILL_DIR}/references/resume-session"`
++`SHARED_DIR="${SKILL_DIR}/../resume-codex/references/resume-session"`
 ```
 
-上游把共用运行时放在技能目录的**兄弟**目录（`skills/shared/resume-session/`），单独拷一个技能目录就会失效；改成技能自带的 `references/` 之后，每个技能目录都是自包含的。`SKILL.md` 的其余正文一字未改。
+上游把共用运行时放在技能目录的**兄弟**目录（`skills/shared/resume-session/`）。三个 resume 技能共用同一份 reader（`CORE.md` + 80KB 的 `session_reader.py`），所以只存一份、由同级技能 `resume-codex` 承载，本技能用相对路径指过去 —— 三个技能目录需要放在一起（同级）。
 
 | 文件 | 上游 SHA-256 | 本仓库 |
 | --- | --- | --- |
-| `SKILL.md` | `be6de5404df93f13510a9ef847efc4f84263590751ab9db129ab93d13606f553` | `8ca80714cd04d6121c103ba316c25630bad0bfaee1dd9185a4e8c8a5f1cbbf10`（仅上面那一行路径不同） |
-| `references/resume-session/f15d9c0163b103095a293f8d025fb8a490634ac95dafc85aed56d4b502cf7944.md` | `f15d9c0163b103095a293f8d025fb8a490634ac95dafc85aed56d4b502cf7944` | 与上游一致，未改动 |
-| `references/resume-session/session_reader.py` | `342853ca19f8d9f10dd171890ee1bbacec2350ea90221cb4ad6925cda2380a58` | 与上游一致，未改动 |
+| `SKILL.md` | `be6de5404df93f13510a9ef847efc4f84263590751ab9db129ab93d13606f553` | `7aa1d1858af958fecd8af65696f4e37e048276d18e486b4113edddda3ad3599f`（仅上面那一行路径不同） |
+| 运行时 `CORE.md` / `session_reader.py` | `f15d9c0163b103095a293f8d025fb8a490634ac95dafc85aed56d4b502cf7944` / `342853ca19f8d9f10dd171890ee1bbacec2350ea90221cb4ad6925cda2380a58` | 由 `resume-codex` 承载，与上游一致，未改动 |
