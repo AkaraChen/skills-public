@@ -11,6 +11,6 @@ argument-hint: "[words describing the session | session id]"
 ---
 
 Set `TOOL=cursor`. Set
-`SHARED_DIR="${SKILL_DIR}/../shared/resume-session"`. Read and follow
+`SHARED_DIR="${SKILL_DIR}/references/resume-session"`. Read and follow
 `${SHARED_DIR}/CORE.md`, using `$ARGUMENTS` unchanged as the optional session
 reference.
